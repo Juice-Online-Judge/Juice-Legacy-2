@@ -23,6 +23,16 @@ const config = {
   server_port : process.env.PORT || 3000,
 
   // ----------------------------------
+  // Database Configuration
+  // ----------------------------------
+  db : {
+    adapter  : procress.env.DB_ADAPTER || 'mysql',
+    database : procress.env.DB_DATABASE || 'juice',
+    username : procress.env.DB_USERNAME || 'juice',
+    password : procress.env.DB_PASSWORD || 'juice'
+  },
+
+  // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
   compiler_css_modules     : true,
