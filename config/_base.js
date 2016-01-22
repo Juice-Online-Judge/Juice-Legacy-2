@@ -27,6 +27,7 @@ const config = {
   // ----------------------------------
   db : {
     adapter  : procress.env.DB_ADAPTER || 'mysql',
+    host  : procress.env.DB_HOST || 'localhost',
     database : procress.env.DB_DATABASE || 'juice',
     username : procress.env.DB_USERNAME || 'juice',
     password : procress.env.DB_PASSWORD || 'juice'
