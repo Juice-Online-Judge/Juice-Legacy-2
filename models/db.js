@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import { db } from '../config'
+import { db } from '../config';
 
 export default new Sequelize(db.database, db.username, db.password, {
   host: db.host,
