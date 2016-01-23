@@ -6,6 +6,7 @@ import historyApiFallback from 'koa-connect-history-api-fallback';
 import serve from 'koa-static';
 import _debug from 'debug';
 import config from '../config';
+import api from './api';
 
 const debug = _debug('app:server');
 const paths = config.utils_paths;
@@ -15,8 +16,19 @@ const app = new Koa();
 // (ignoring file requests). If you want to implement isomorphic
 // rendering, you'll want to remove this middleware.
 app.use(convert(historyApiFallback({
-  verbose: false
+  verbose: false,
+  rewrites: [{
+      from: /^\/api\/.*$/,
+      to: function(context) {
+        // Don't rewrite api
+        return context.parsedUrl.pathname;
+      }
+  }]
 })));
+
+// Mount api call
+app.use(api.routes());
+app.use(api.allowedMethods());
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
