@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "1.0.0",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "Juice",
+  "version": "0.0.0",
+  "description": "Interactive teaching and judging system",
   "main": "index.js",
   "engines": {
     "node": ">=4.2.0",
@@ -10,6 +10,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "compile": "node -r dotenv/config --harmony bin/compile",
+    "migrate": "node -r dotenv/config -r babel-register --harmony bin/migrate",
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
@@ -45,10 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/Sunday-Without-God/Juice.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
-  "license": "MIT",
+  "author": "DanSnow",
   "dependencies": {
     "better-npm-run": "0.0.5",
     "debug": "^2.2.0",
@@ -69,6 +69,7 @@
     "redux-thunk": "^1.0.0",
     "sequelize": "^3.18.0",
     "url": "^0.11.0",
+    "when": "^3.7.7",
     "yargs": "^3.18.0"
   },
   "devDependencies": {
@@ -124,6 +125,7 @@
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
+    "umzug": "^1.8.0",
     "url-loader": "^0.5.6",
     "webpack": "1.12.9",
     "webpack-dev-middleware": "1.4.0",
