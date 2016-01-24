@@ -21,6 +21,7 @@ const config = {
   // ----------------------------------
   server_host : 'localhost',
   server_port : process.env.PORT || 3000,
+  app_key     : procress.env.APP_KEY,
 
   // ----------------------------------
   // Database Configuration
