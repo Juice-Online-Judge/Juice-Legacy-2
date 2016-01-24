@@ -30,7 +30,7 @@
       }
     },
     "deploy": {
-      "command": "npm run clean && npm run compile",
+      "command": "npm run clean && npm run compile && npm run keygen",
       "env": {
         "NODE_ENV": "production"
       }
