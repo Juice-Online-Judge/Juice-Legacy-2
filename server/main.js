@@ -1,5 +1,7 @@
 import Koa from 'koa';
 import convert from 'koa-convert';
+import session from 'koa-generic-session';
+import redisStore from 'koa-redis';
 import webpack from 'webpack';
 import webpackConfig from '../build/webpack.config';
 import historyApiFallback from 'koa-connect-history-api-fallback';
@@ -7,28 +9,35 @@ import serve from 'koa-static';
 import _debug from 'debug';
 import config from '../config';
 import api from './api';
+import auth from './lib/auth';
 
 const debug = _debug('app:server');
 const paths = config.utils_paths;
 const app = new Koa();
 
-// This rewrites all routes requests to the root /index.html file
-// (ignoring file requests). If you want to implement isomorphic
-// rendering, you'll want to remove this middleware.
-app.use(convert(historyApiFallback({
-  verbose: false,
-  rewrites: [{
-      from: /^\/api\/.*$/,
-      to: function(context) {
-        // Don't rewrite api
-        return context.parsedUrl.pathname;
-      }
-  }]
+app.keys = [config.app_key];
+
+// Initialize session
+app.use(convert(session({
+  store: redisStore()
 })));
+
+// Mount passport middleware
+app.use(auth.initialize());
+app.use(auth.session());
 
 // Mount api call
 app.use(api.routes());
 app.use(api.allowedMethods());
+
+// This rewrites all routes requests to the root /index.html file
+// (ignoring file requests). If you want to implement isomorphic
+// rendering, you'll want to remove this middleware.
+app.use(convert(historyApiFallback({
+  verbose: false
+})));
+
+
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
