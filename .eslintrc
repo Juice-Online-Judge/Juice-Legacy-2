@@ -15,6 +15,7 @@
     "__BASENAME__" : false
   },
   "rules": {
-    "semi" : [2, "always"]
+    "semi" : [2, "always"],
+    "space-before-function-paren" : [2, "never"]
   }
 }
