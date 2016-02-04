@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { useRouterHistory } from 'react-router';
 import { createHistory } from 'history';
 import routes from './routes';
@@ -11,6 +12,8 @@ const history = useRouterHistory(createHistory)(historyConfig);
 
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore({ initialState, history });
+
+injectTapEventPlugin();
 
 // Render the React application to the DOM
 ReactDOM.render(
