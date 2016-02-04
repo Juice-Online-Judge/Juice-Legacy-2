@@ -7,7 +7,7 @@ import _debug from 'debug';
 
 const debug = _debug('app:server:api:router');
 
-const router =  new Router({
+const router = new Router({
   prefix: '/api'
 });
 
@@ -16,7 +16,7 @@ router.use(convert(json()));
 
 router.use('/auth', authRouter.routes(), authRouter.allowedMethods());
 router.use((ctx, next) => {
-  if(ctx.isAuthenticated()) {
+  if (ctx.isAuthenticated()) {
     debug('It\'s auth');
     return next();
   } else {

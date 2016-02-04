@@ -20,7 +20,7 @@ export class HomeView extends React.Component {
     increment: PropTypes.func.isRequired
   };
 
-  render () {
+  render() {
     return (
       <div className='container text-center'>
         <div className='row'>

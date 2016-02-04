@@ -25,7 +25,7 @@ export default db.define('user', {
 }, {
   paranoid: true,
   instanceMethods: {
-    setPassword: function (password) {
+    setPassword: function(password) {
       let this_ = this;
       return when.promise(async (resolve) => {
         let salt = await nodefn.call(bcrypt.genSalt, 10);

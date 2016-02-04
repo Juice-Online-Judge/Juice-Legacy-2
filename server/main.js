@@ -37,8 +37,6 @@ app.use(convert(historyApiFallback({
   verbose: false
 })));
 
-
-
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------

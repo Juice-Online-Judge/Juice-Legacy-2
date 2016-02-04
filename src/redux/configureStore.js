@@ -3,14 +3,14 @@ import { syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 
-function withDevTools (middleware) {
+function withDevTools(middleware) {
   const devTools = window.devToolsExtension
     ? window.devToolsExtension()
     : require('containers/DevTools').default.instrument();
   return compose(middleware, devTools);
 }
 
-export default function configureStore ({ initialState = {}, history }) {
+export default function configureStore({ initialState = {}, history }) {
   // Sync with router via history instance (main.js)
   const routerMiddleware = syncHistory(history);
 

@@ -24,12 +24,12 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   });
   debug('Auth user');
 
-  if(user) {
+  if (user) {
     debug('Finded user');
     valid = await user.verifyPassword(password);
   }
 
-  if(valid) {
+  if (valid) {
     debug('Auth success');
     done(null, user);
   } else {

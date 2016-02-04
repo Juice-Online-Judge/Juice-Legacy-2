@@ -20,6 +20,6 @@ nodefn.call(randomBytes, 24)
         nodefn.call(writeFile, envPath, result, 'utf8')
           .catch((err) => console.log(err));
         debug('Write file');
-        console.log(`New key is: ${key}`)
+        console.log(`New key is: ${key}`);
       });
   });

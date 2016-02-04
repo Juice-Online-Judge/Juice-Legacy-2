@@ -6,7 +6,7 @@ const debug = _debug('app:server:route:signin');
 
 router.post('/signin', (ctx, next) => {
   return auth.authenticate('local', (user, info, status) => {
-    if(user === false) {
+    if (user === false) {
       debug('Auth fail');
       ctx.status = 401;
       ctx.body = { success: false };
