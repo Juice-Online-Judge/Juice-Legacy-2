@@ -28,8 +28,9 @@ let { push } = routeActions;
 class SigninView extends React.Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
-    loginState: PropTypes.bool.isRequired,
+    loginState: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
+    fetchUserInfo: PropTypes.func.isRequired,
     setLoginState: PropTypes.func.isRequired
   };
 
@@ -43,6 +44,7 @@ class SigninView extends React.Component {
 
   componentDidMount() {
     this.checkLoginState(this.props);
+    this.props.fetchUserInfo();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,7 +52,7 @@ class SigninView extends React.Component {
   }
 
   checkLoginState(props) {
-    if (props.loginState) {
+    if (props.loginState.get('state')) {
       props.push('/');
     }
   }
