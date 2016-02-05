@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import convert from 'koa-convert';
 import session from 'koa-generic-session';
+import csrf from 'koa-csrf';
 import redisStore from 'koa-redis';
 import webpack from 'webpack';
 import webpackConfig from '../build/webpack.config';
@@ -25,6 +26,13 @@ app.use(convert(session({
 // Mount passport middleware
 app.use(auth.initialize());
 app.use(auth.session());
+
+csrf(app);
+app.use(convert(csrf.middleware));
+app.use(async (ctx, next) => {
+  ctx.cookies.set('csrf-token', ctx.csrf, { httpOnly: false });
+  return await next();
+});
 
 // Mount api call
 app.use(api.routes());
