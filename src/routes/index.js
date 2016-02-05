@@ -9,10 +9,12 @@ import { Route, IndexRoute, Redirect } from 'react-router';
 import CoreLayout from 'layouts/CoreLayout/CoreLayout';
 import HomeView from 'views/HomeView/HomeView';
 import NotFoundView from 'views/NotFoundView/NotFoundView';
+import SigninView from 'views/SigninView/SigninView';
 
 export default (
   <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
+    <Route path='signin' component={SigninView} />
     <Route path='/404' component={NotFoundView} />
     <Redirect from='*' to='/404' />
   </Route>
