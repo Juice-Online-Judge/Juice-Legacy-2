@@ -53,11 +53,13 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "better-npm-run": "0.0.5",
+    "core-decorators": "^0.11.0",
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
     "fetch-plus": "^3.6.1",
     "fetch-plus-json": "^3.6.0",
     "history": "^2.0.0-rc2",
+    "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.0.0-alpha.3",
     "koa-bodyparser": "^2.0.1",
