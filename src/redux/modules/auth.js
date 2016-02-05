@@ -1,9 +1,22 @@
 import { createAction, handleActions } from 'redux-actions';
+import Immutable from 'immutable';
 import api from 'lib/api';
 
+let initialState = Immutable.fromJS({
+  valid: false,
+  state: false,
+  user: {
+    id: 0,
+    email: null,
+    username: null
+  }
+});
+
 export const SET_LOGIN_STATE = 'SET_LOGIN_STATE';
+export const SET_USER_INFO = 'SET_USER_INFO';
 
 export const setLoginState = createAction(SET_LOGIN_STATE, (state = false) => state);
+export const setUserInfo = createAction(SET_USER_INFO, (info) => info);
 
 export const login = (username, password) => {
   return (dispatch) => {
@@ -12,15 +25,49 @@ export const login = (username, password) => {
       .then((response) => {
         console.log(response);
         dispatch(setLoginState(true));
+      })
+      .catch((error) => {
+        console.warn(error);
+        if (error instanceof Error) {
+          throw error;
+        }
+      });
+  };
+};
+
+export const fetchUserInfo = () => {
+  return (dispatch) => {
+    api.browse('auth/user')
+      .then((response) => {
+        console.log(response);
+        dispatch(setUserInfo(response));
+      })
+      .catch((error) => {
+        console.warn(error);
+        if (error instanceof Error) {
+          throw error;
+        }
       });
   };
 };
 
 export let actions = {
   login,
-  setLoginState
+  setLoginState,
+  setUserInfo,
+  fetchUserInfo
 };
 
 export default handleActions({
-  [SET_LOGIN_STATE]: (_state, { payload }) => payload
-}, false);
+  [SET_LOGIN_STATE]: (state, { payload }) => {
+    console.log(state);
+    return state.merge({valid: true, state: payload});
+  },
+  [SET_USER_INFO]: (state, { payload }) => {
+    if (payload === {}) {
+      return state.merge({valid: true, state: false});
+    } else {
+      return state.merge({valid: true, state: true, user: payload});
+    }
+  }
+}, initialState);
