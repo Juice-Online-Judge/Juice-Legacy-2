@@ -4,6 +4,7 @@ import { autobind } from 'core-decorators';
 import { connect } from 'react-redux';
 
 import { actions as loginActions } from '../../redux/modules/auth';
+import { routeActions } from 'redux-simple-router';
 
 import Paper from 'material-ui/lib/paper';
 import Card from 'material-ui/lib/card/card';
@@ -17,14 +18,16 @@ import Theme from 'material-ui/lib/styles/theme-decorator';
 import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 
 let theme = ThemeManager.getMuiTheme(LightRawTheme);
+let { push } = routeActions;
 
 @Radium
 @Theme(theme)
 @connect((state) => {
   return {loginState: state.auth};
-}, loginActions)
+}, Object.assign({}, loginActions, { push }))
 class SigninView extends React.Component {
   static propTypes = {
+    push: PropTypes.func.isRequired,
     loginState: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
     setLoginState: PropTypes.func.isRequired
@@ -36,6 +39,20 @@ class SigninView extends React.Component {
       username: '',
       password: ''
     };
+  }
+
+  componentDidMount() {
+    this.checkLoginState(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.checkLoginState(nextProps);
+  }
+
+  checkLoginState(props) {
+    if (props.loginState) {
+      props.push('/');
+    }
   }
 
   @autobind
