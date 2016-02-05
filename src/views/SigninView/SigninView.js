@@ -71,6 +71,7 @@ class SigninView extends React.Component {
     event.preventDefault();
     this.props.login(username, password);
   }
+
   render() {
     return (
       <div style={styles.container}>
