@@ -34,6 +34,23 @@ export const login = (username, password) => {
   };
 };
 
+export const logout = () => {
+  return (dispatch) => {
+    api.destroy('auth/logout')
+      .then((response) => {
+        if (response.success) {
+          dispatch(setLoginState(false));
+        }
+      })
+      .catch((error) => {
+        console.warn(error);
+        if (error instanceof Error) {
+          throw error;
+        }
+      });
+  };
+};
+
 export const fetchUserInfo = () => {
   return (dispatch) => {
     api.browse('auth/user')
@@ -57,7 +74,8 @@ export let actions = {
   login,
   setLoginState,
   setUserInfo,
-  fetchUserInfo
+  fetchUserInfo,
+  logout
 };
 
 export default handleActions({
