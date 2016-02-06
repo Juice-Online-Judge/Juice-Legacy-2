@@ -23,7 +23,6 @@ export const login = (username, password) => {
     let body = { username, password };
     api.add('auth/signin', { body })
       .then((response) => {
-        console.log(response);
         dispatch(setLoginState(true));
       })
       .catch((error) => {
@@ -64,7 +63,6 @@ export let actions = {
 export default handleActions({
   [SET_LOGIN_STATE]: (state, { payload }) => state.merge({valid: true, state: payload}),
   [SET_USER_INFO]: (state, { payload }) => {
-    console.log(payload);
     if (payload === {}) {
       return state.merge({valid: true, state: false});
     } else {
