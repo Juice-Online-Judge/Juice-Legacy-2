@@ -13,15 +13,9 @@ import CardActions from 'material-ui/lib/card/card-actions';
 import TextField from 'material-ui/lib/text-field';
 import FlatButton from 'material-ui/lib/flat-button';
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import Theme from 'material-ui/lib/styles/theme-decorator';
-import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
-
-let theme = ThemeManager.getMuiTheme(LightRawTheme);
 let { push } = routeActions;
 
 @Radium
-@Theme(theme)
 @connect((state) => {
   return {loginState: state.auth};
 }, Object.assign({}, loginActions, { push }))
