@@ -59,10 +59,7 @@ export let actions = {
 };
 
 export default handleActions({
-  [SET_LOGIN_STATE]: (state, { payload }) => {
-    console.log(state);
-    return state.merge({valid: true, state: payload});
-  },
+  [SET_LOGIN_STATE]: (state, { payload }) => state.merge({valid: true, state: payload}),
   [SET_USER_INFO]: (state, { payload }) => {
     if (payload === {}) {
       return state.merge({valid: true, state: false});
