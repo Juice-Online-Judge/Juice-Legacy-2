@@ -59,4 +59,4 @@ export class AppBar extends React.Component {
 
 export default connect((state) => {
   return {loginState: state.auth};
-}, authActions)(HomeView);
+}, authActions)(AppBar);
