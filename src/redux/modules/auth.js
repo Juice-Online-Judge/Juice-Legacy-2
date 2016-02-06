@@ -39,8 +39,11 @@ export const fetchUserInfo = () => {
   return (dispatch) => {
     api.browse('auth/user')
       .then((response) => {
-        console.log(response);
-        dispatch(setUserInfo(response));
+        if (response.user) {
+          dispatch(setUserInfo(response.user));
+        } else {
+          dispatch(setLoginState(false));
+        }
       })
       .catch((error) => {
         console.warn(error);
@@ -61,6 +64,7 @@ export let actions = {
 export default handleActions({
   [SET_LOGIN_STATE]: (state, { payload }) => state.merge({valid: true, state: payload}),
   [SET_USER_INFO]: (state, { payload }) => {
+    console.log(payload);
     if (payload === {}) {
       return state.merge({valid: true, state: false});
     } else {
