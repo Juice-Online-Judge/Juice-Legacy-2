@@ -7,5 +7,9 @@ const debug = _debug('app:server:route:user');
 
 router.get('/user', (ctx, next) => {
   ctx.status = 200;
-  ctx.body = pick(ctx.req.user, ['id', 'username', 'email']);
+  if (ctx.isAuthenticated()) {
+    ctx.body = {user: pick(ctx.req.user, ['id', 'username', 'email'])};
+  } else {
+    ctx.body = {user: null};
+  }
 });
