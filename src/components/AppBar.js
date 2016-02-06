@@ -15,7 +15,8 @@ import { actions as authActions } from 'redux/modules/auth';
 export class AppBar extends React.Component {
   static propTypes = {
     loginState: PropTypes.object.isRequired,
-    fetchUserInfo: PropTypes.func.isRequired
+    fetchUserInfo: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -24,7 +25,7 @@ export class AppBar extends React.Component {
 
   @autobind
   logout() {
-    console.log('logout');
+    this.props.logout();
   }
 
   get rightMenu() {
