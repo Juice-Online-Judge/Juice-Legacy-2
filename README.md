@@ -15,6 +15,7 @@ We want to build a system to solve this problem.
 This project is build from [davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) with:
 - Nodejs
 - Koa
+- Immutable.js
 - React
 - Redux
 - Material-UI
