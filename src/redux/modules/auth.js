@@ -5,18 +5,16 @@ import api from 'lib/api';
 let initialState = Immutable.fromJS({
   valid: false,
   state: false,
-  user: {
-    id: 0,
-    email: null,
-    username: null
-  }
+  user: {}
 });
 
 export const SET_LOGIN_STATE = 'SET_LOGIN_STATE';
 export const SET_USER_INFO = 'SET_USER_INFO';
+export const CLEAR_USER = 'CLEAR_USER';
 
 export const setLoginState = createAction(SET_LOGIN_STATE, (state = false) => state);
 export const setUserInfo = createAction(SET_USER_INFO, (info) => info);
+export const clearUser = createAction(CLEAR_USER);
 
 export const login = (username, password) => {
   return (dispatch) => {
@@ -39,7 +37,7 @@ export const logout = () => {
     api.destroy('auth/logout')
       .then((response) => {
         if (response.success) {
-          dispatch(setLoginState(false));
+          dispatch(clearUser());
         }
       })
       .catch((error) => {
@@ -75,6 +73,7 @@ export let actions = {
   setLoginState,
   setUserInfo,
   fetchUserInfo,
+  clearUser,
   logout
 };
 
@@ -86,5 +85,6 @@ export default handleActions({
     } else {
       return state.merge({valid: true, state: true, user: payload});
     }
-  }
+  },
+  [CLEAR_USER]: (state) => state.merge({valid: true, state: false, user: {}})
 }, initialState);
