@@ -7,8 +7,8 @@ import MuiAppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import FlatButton from 'material-ui/lib/flat-button';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import FontIcon from 'material-ui/lib/font-icon';
 
 import { actions as authActions } from 'redux/modules/auth';
 
@@ -33,7 +33,11 @@ export class AppBar extends React.Component {
       return (
         <IconMenu
           iconButtonElement={
-            <IconButton><MoreVertIcon /></IconButton>
+            <IconButton>
+              <FontIcon className='material-icons'>
+                more_vert
+              </FontIcon>
+            </IconButton>
           }
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
