@@ -43,8 +43,8 @@ class SigninView extends React.Component {
   }
 
   componentDidMount() {
-    this.checkLoginState(this.props);
     this.props.fetchUserInfo();
+    this.checkLoginState(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
