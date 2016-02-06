@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import AppBar from 'components/AppBar';
 
@@ -8,9 +9,45 @@ import AppBar from 'components/AppBar';
 // the component can be tested w/ and w/o being connected.
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class HomeView extends React.Component {
+  static propTypes = {
+    loginState: PropTypes.object.isRequired
+  };
+
+  get welcome() {
+    let { loginState } = this.props;
+    if (loginState.get('valid')) {
+      if (loginState.get('state')) {
+        return (
+          <h1>
+            Welcome user: {loginState.getIn(['user', 'username'])}
+          </h1>
+        );
+      } else {
+        return (
+          <h1>
+            Please login
+          </h1>
+        );
+      }
+    } else {
+      return (
+        <h1>
+          Loading...
+        </h1>
+      );
+    }
+  }
+
   render() {
     return (
-      <AppBar />
+      <div>
+        <AppBar />
+        { this.welcome }
+      </div>
     );
   }
 }
+
+export default connect((state) => {
+  return { loginState: state.auth };
+})(HomeView);
