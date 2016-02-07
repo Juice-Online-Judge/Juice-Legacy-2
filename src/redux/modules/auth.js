@@ -5,21 +5,29 @@ import api from 'lib/api';
 let initialState = Immutable.fromJS({
   valid: false,
   state: false,
-  user: {}
+  user: {},
+  errorMessage: null
 });
 
 export const SET_LOGIN_STATE = 'SET_LOGIN_STATE';
 export const SET_USER_INFO = 'SET_USER_INFO';
+export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_USER = 'CLEAR_USER';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const setLoginState = createAction(SET_LOGIN_STATE, (state = false) => state);
 export const setUserInfo = createAction(SET_USER_INFO, (info) => info);
+export const setError = createAction(SET_ERROR, (msg) => msg);
 export const clearUser = createAction(CLEAR_USER);
+export const clearError = createAction(CLEAR_ERROR);
 
 export const login = (username, password) => {
   return (dispatch) => {
     let body = { username, password };
-    api.add('auth/signin', { body })
+    api({
+      path: 'auth/signin',
+      entity: body
+    }).entity()
       .then((response) => {
         dispatch(setLoginState(true));
       })
@@ -34,7 +42,10 @@ export const login = (username, password) => {
 
 export const logout = () => {
   return (dispatch) => {
-    api.destroy('auth/logout')
+    api({
+      path: 'auth/logout',
+      method: 'delete'
+    }).entity()
       .then((response) => {
         if (response.success) {
           dispatch(clearUser());
@@ -51,12 +62,35 @@ export const logout = () => {
 
 export const fetchUserInfo = () => {
   return (dispatch) => {
-    api.browse('auth/user')
+    api({
+      path: 'auth/user'
+    }).entity()
       .then((response) => {
         if (response.user) {
           dispatch(setUserInfo(response.user));
         } else {
           dispatch(setLoginState(false));
+        }
+      })
+      .catch((error) => {
+        console.warn(error);
+        if (error instanceof Error) {
+          throw error;
+        }
+      });
+  };
+};
+
+export const registerUser = (info) => {
+  return (dispatch) => {
+    api({
+      path: 'auth/register',
+      entity: info
+    }).entity()
+      .then((response) => {
+        let data = response.body().data();
+        if (data.success) {
+          dispatch(setUserInfo(info));
         }
       })
       .catch((error) => {
@@ -74,6 +108,8 @@ export let actions = {
   setUserInfo,
   fetchUserInfo,
   clearUser,
+  clearError,
+  registerUser,
   logout
 };
 
@@ -86,5 +122,7 @@ export default handleActions({
       return state.merge({valid: true, state: true, user: payload});
     }
   },
-  [CLEAR_USER]: (state) => state.merge({valid: true, state: false, user: {}})
+  [SET_ERROR]: (state, { payload }) => state.merge({error: payload}),
+  [CLEAR_USER]: (state) => state.merge({valid: true, state: false, user: {}}),
+  [CLEAR_ERROR]: (state) => state.merge({error: null})
 }, initialState);
