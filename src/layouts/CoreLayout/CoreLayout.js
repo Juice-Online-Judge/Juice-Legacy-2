@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react';
+import Radium from 'radium';
 import Theme from 'material-ui/lib/styles/theme-decorator';
 
 import '../../styles/core.scss';
 import theme from '../../themes/light';
+
+import AppBar from 'components/AppBar';
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.
@@ -14,6 +17,7 @@ import theme from '../../themes/light';
 // CoreLayout is a pure function of its props, so we can
 // define it with a plain javascript function...
 @Theme(theme)
+@Radium
 class CoreLayout extends React.Component {
   static propTypes = {
     children: PropTypes.element
@@ -21,8 +25,9 @@ class CoreLayout extends React.Component {
 
   render() {
     return (
-      <div className='page-container'>
-        <div className='view-container'>
+      <div className='page-container' style={ styles.container }>
+        <div className='view-container' style={ styles.container }>
+          <AppBar />
           {this.props.children}
         </div>
       </div>
@@ -31,3 +36,9 @@ class CoreLayout extends React.Component {
 }
 
 export default CoreLayout;
+
+let styles = {
+  container: {
+    height: '100%'
+  }
+};

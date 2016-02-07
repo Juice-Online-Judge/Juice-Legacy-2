@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import AppBar from 'components/AppBar';
-
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
 // export the decorated component after the main class definition so
@@ -41,7 +39,6 @@ export class HomeView extends React.Component {
   render() {
     return (
       <div>
-        <AppBar />
         { this.welcome }
       </div>
     );
