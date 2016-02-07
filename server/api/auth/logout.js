@@ -1,6 +1,5 @@
 import _debug from 'debug';
 import router from './router';
-import auth from '../../lib/auth';
 
 const debug = _debug('app:server:route:logout');
 

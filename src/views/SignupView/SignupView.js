@@ -73,7 +73,7 @@ export class SignupView extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <div style={[ styles.margin, styles.flexContainer]}>
+        <div style={[styles.margin, styles.flexContainer]}>
           <Paper zDepth={3} style={styles.paper}>
             <Card>
               <CardTitle style={styles.flexContainer} title='Signup' />
