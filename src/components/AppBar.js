@@ -46,9 +46,14 @@ export class AppBar extends React.Component {
       );
     } else {
       return (
-        <Link to='/signin'>
-          <FlatButton labelStyle={{ color: 'white' }} label='Signin' />
-        </Link>
+        <div>
+          <Link to='/signup'>
+            <FlatButton labelStyle={{ color: 'white' }} label='Signup' />
+          </Link>
+          <Link to='/signin'>
+            <FlatButton labelStyle={{ color: 'white' }} label='Signin' />
+          </Link>
+        </div>
       );
     }
   }
