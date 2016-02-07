@@ -22,7 +22,8 @@ export class SignupView extends React.Component {
     loginState: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     fetchUserInfo: PropTypes.func.isRequired,
-    registerUser: PropTypes.func.isRequired
+    registerUser: PropTypes.func.isRequired,
+    clearError: PropTypes.func.isRquired
   };
 
   constructor(...args) {
@@ -37,6 +38,7 @@ export class SignupView extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserInfo();
+    this.props.clearError();
     this.checkLoginState(this.props);
   }
 
@@ -72,8 +74,19 @@ export class SignupView extends React.Component {
 
   @autobind
   signup(event) {
+    let {
+      username,
+      password,
+      email,
+      passwordConfirm
+    } = this.state;
     event.preventDefault();
-    this.props.registerUser(this.state);
+    this.props.registerUser({
+      username,
+      password,
+      email,
+      passwordConfirm
+    });
   }
 
   render() {
