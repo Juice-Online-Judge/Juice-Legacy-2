@@ -19,7 +19,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new LocalStrategy(async (username, password, done) => {
   let valid = false;
   let user = await User.findOne({
-    where: { username: username },
+    where: { username },
     attributes: ['id', 'username', 'password']
   });
   debug('Auth user');
