@@ -1,12 +1,14 @@
-import { connectEndpoint } from 'fetch-plus';
-import Cookies from 'js-cookie';
-import plusJson from 'fetch-plus-json';
-import plusCsrf from 'fetch-plus-csrf';
-import cookie from './middleware/cookie';
+import rest from 'rest';
+import pathPrefix from 'rest/interceptor/pathPrefix';
+import mime from 'rest/interceptor/mime';
+import errorCode from 'rest/interceptor/errorCode';
+import csrf from 'rest/interceptor/csrf';
+import Cookie from 'js-cookie';
 
-let api = connectEndpoint('/api')
-  .addMiddleware(cookie)
-  .addMiddleware(plusJson())
-  .addMiddleware(plusCsrf('X-CSRF-TOKEN', Cookies.get('csrf-token')));
+const api = rest
+  .wrap(pathPrefix, { prefix: '/api' })
+  .wrap(mime, { mime: 'application/json' })
+  .wrap(errorCode)
+  .wrap(csrf, { token: Cookie.get('csrf-token') });
 
 export default api;
