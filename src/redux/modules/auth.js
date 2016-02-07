@@ -88,8 +88,7 @@ export const registerUser = (info) => {
       entity: info
     }).entity()
       .then((response) => {
-        let data = response.body().data();
-        if (data.success) {
+        if (response.success) {
           dispatch(setUserInfo(info));
         }
       })
