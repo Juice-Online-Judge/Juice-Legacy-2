@@ -97,6 +97,8 @@ export const registerUser = (info) => {
         console.warn(error);
         if (error instanceof Error) {
           throw error;
+        } else {
+          dispatch(setError(error.message));
         }
       });
   };
