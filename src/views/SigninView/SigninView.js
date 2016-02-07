@@ -16,10 +16,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 let { push } = routeActions;
 
 @Radium
-@connect((state) => {
-  return {loginState: state.auth};
-}, Object.assign({}, loginActions, { push }))
-class SigninView extends React.Component {
+export class SigninView extends React.Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
     loginState: PropTypes.object.isRequired,
@@ -71,7 +68,7 @@ class SigninView extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <div style={styles.flexContainer}>
+        <div style={[styles.margin, styles.flexContainer]}>
           <Paper zDepth={3} style={styles.paper}>
             <Card>
               <CardTitle style={styles.flexContainer} title='Juice' />
@@ -87,7 +84,7 @@ class SigninView extends React.Component {
                   floatingLabelText='Password' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
-                <FlatButton label='Login' primary onClick={ this.login } />
+                <FlatButton label='Signin' primary onClick={ this.login } />
               </CardActions>
             </Card>
           </Paper>
@@ -97,7 +94,9 @@ class SigninView extends React.Component {
   }
 }
 
-export default SigninView;
+export default connect((state) => {
+  return {loginState: state.auth};
+}, Object.assign({}, loginActions, { push }))(SigninView);
 
 let styles = {
   container: {
@@ -108,6 +107,9 @@ let styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  margin: {
+    marginTop: '20px'
   },
   paper: {
     width: '40%',
