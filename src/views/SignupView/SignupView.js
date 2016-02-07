@@ -22,7 +22,7 @@ export class SignupView extends React.Component {
     loginState: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     fetchUserInfo: PropTypes.func.isRequired,
-    setLoginState: PropTypes.func.isRequired
+    registerUser: PropTypes.func.isRequired
   };
 
   constructor(...args) {
@@ -70,6 +70,12 @@ export class SignupView extends React.Component {
     this.setState({email: event.target.value});
   }
 
+  @autobind
+  signup(event) {
+    event.preventDefault();
+    this.props.registerUser(this.state);
+  }
+
   render() {
     return (
       <div style={styles.container}>
@@ -100,7 +106,7 @@ export class SignupView extends React.Component {
                   floatingLabelText='PasswordConfirm' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
-                <FlatButton label='Signup' primary />
+                <FlatButton label='Signup' primary onClick={ this.signup } />
               </CardActions>
             </Card>
           </Paper>
