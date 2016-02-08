@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import { autobind } from 'core-decorators';
 import { connect } from 'react-redux';
+import validate from 'validate.js';
+import pick from 'lodash/pick';
 
 import { actions as loginActions } from '../../redux/modules/auth';
 import { routeActions } from 'redux-simple-router';
@@ -12,6 +14,8 @@ import CardTitle from 'material-ui/lib/card/card-title';
 import CardActions from 'material-ui/lib/card/card-actions';
 import TextField from 'material-ui/lib/text-field';
 import FlatButton from 'material-ui/lib/flat-button';
+
+import rule from 'validation/register';
 
 let { push } = routeActions;
 
@@ -96,19 +100,26 @@ export class SignupView extends React.Component {
 
   @autobind
   signup(event) {
-    let {
-      username,
-      password,
-      email,
-      passwordConfirm
-    } = this.state;
+    let fields = [
+      'username',
+      'password',
+      'email',
+      'passwordConfirm'
+    ]
+    let datas = pick(this.state, fields);
     event.preventDefault();
-    this.props.registerUser({
-      username,
-      password,
-      email,
-      passwordConfirm
-    });
+    validate.async(datas, rule)
+      .then(() => {
+        this.props.registerUser(datas);
+      })
+      .catch((error) => {
+        if(error instanceof Error) {
+          console.warn(error);
+          throw error;
+        } else {
+          this.setState({ errorMessage: error })
+        }
+      })
   }
 
   render() {
