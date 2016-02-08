@@ -123,7 +123,7 @@ export default handleActions({
       return state.merge({valid: true, state: true, user: payload});
     }
   },
-  [SET_ERROR]: (state, { payload }) => state.merge({error: payload}),
+  [SET_ERROR]: (state, { payload }) => state.merge({errorMessage: payload}),
   [CLEAR_USER]: (state) => state.merge({valid: true, state: false, user: {}}),
-  [CLEAR_ERROR]: (state) => state.merge({error: null})
+  [CLEAR_ERROR]: (state) => state.merge({errorMessage: null})
 }, initialState);
