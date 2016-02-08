@@ -32,7 +32,13 @@ export class SignupView extends React.Component {
       username: '',
       password: '',
       email: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
+      errorMessage: {
+        username: null,
+        email: null,
+        password: null,
+        passwordConfirm: null
+      }
     };
   }
 
@@ -40,10 +46,26 @@ export class SignupView extends React.Component {
     this.props.fetchUserInfo();
     this.props.clearError();
     this.checkLoginState(this.props);
+    this.fetchErrorMessage(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.checkLoginState(nextProps);
+  componentWillReceiveProps(nextProp) {
+    this.checkLoginState(nextProp);
+    this.fetchErrorMessage(nextProp);
+  }
+
+  @autobind
+  fetchErrorMessage(props) {
+    let errorMessage = {
+      username: null,
+      email: null,
+      password: null,
+      passwordConfirm: null
+    };
+    Object.keys(errorMessage).forEach((key) => {
+      errorMessage[key] = props.loginState.getIn(['errorMessage', key], null);
+    });
+    this.setState({ errorMessage })
   }
 
   checkLoginState(props) {
@@ -90,15 +112,7 @@ export class SignupView extends React.Component {
   }
 
   render() {
-    let errorMessage = {
-      username: null,
-      email: null,
-      password: null,
-      passwordConfirm: null
-    };
-    Object.keys(errorMessage).forEach((key) => {
-      errorMessage[key] = this.props.loginState.getIn(['errorMessage', key], null);
-    });
+    let { errorMessage } = this.state;
     return (
       <div style={styles.container}>
         <div style={[styles.margin, styles.flexContainer]}>
