@@ -90,6 +90,15 @@ export class SignupView extends React.Component {
   }
 
   render() {
+    let errorMessage = {
+      username: null,
+      email: null,
+      password: null,
+      passwordConfirm: null
+    };
+    Object.keys(errorMessage).forEach((key) => {
+      errorMessage[key] = this.props.loginState.getIn(['errorMessage', key], null);
+    });
     return (
       <div style={styles.container}>
         <div style={[styles.margin, styles.flexContainer]}>
@@ -99,23 +108,27 @@ export class SignupView extends React.Component {
               <CardActions style={styles.flexContainer}>
                 <TextField style={styles.action}
                   onChange={ this.setUsername }
+                  errorText={ errorMessage.username }
                   floatingLabelText='Username' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
                 <TextField style={styles.action}
                   onChange={ this.setEmail }
+                  errorText={ errorMessage.email }
                   floatingLabelText='Email' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
                 <TextField style={styles.action}
                   type='password'
                   onChange={ this.setPassword }
+                  errorText={ errorMessage.password }
                   floatingLabelText='Password' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
                 <TextField style={styles.action}
                   type='password'
                   onChange={ this.setPasswordConfirm }
+                  errorText={ errorMessage.passwordConfirm }
                   floatingLabelText='PasswordConfirm' />
               </CardActions>
               <CardActions style={styles.flexContainer}>
