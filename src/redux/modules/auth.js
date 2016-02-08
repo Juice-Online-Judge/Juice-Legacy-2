@@ -61,7 +61,11 @@ export const logout = () => {
 };
 
 export const fetchUserInfo = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    let { auth } = getState();
+    if (auth.get('valid')) {
+      return;
+    }
     api({
       path: 'auth/user'
     }).entity()
