@@ -69,7 +69,7 @@ export class SignupView extends React.Component {
     Object.keys(errorMessage).forEach((key) => {
       errorMessage[key] = props.loginState.getIn(['errorMessage', key], null);
     });
-    this.setState({ errorMessage })
+    this.setState({ errorMessage });
   }
 
   checkLoginState(props) {
@@ -105,7 +105,7 @@ export class SignupView extends React.Component {
       'password',
       'email',
       'passwordConfirm'
-    ]
+    ];
     let datas = pick(this.state, fields);
     event.preventDefault();
     validate.async(datas, rule)
@@ -113,13 +113,13 @@ export class SignupView extends React.Component {
         this.props.registerUser(datas);
       })
       .catch((error) => {
-        if(error instanceof Error) {
+        if (error instanceof Error) {
           console.warn(error);
           throw error;
         } else {
-          this.setState({ errorMessage: error })
+          this.setState({ errorMessage: error });
         }
-      })
+      });
   }
 
   render() {
