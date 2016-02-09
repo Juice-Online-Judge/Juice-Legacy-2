@@ -18,22 +18,22 @@ let checkUnique = (username) => {
       throw new Error(NOT_UNIQ_MSG);
     }
   });
-}
+};
 
 router.post('/register', async (ctx, next) => {
   let body = ctx.request.body;
   debug(body);
   if (body.username) {
     try {
-      await when.all([checkUnique(body.username), validate.async(body, rule)])
+      await when.all([checkUnique(body.username), validate.async(body, rule)]);
       debug('Pass validation');
       ctx.status = 200;
       ctx.body = {
         success: true
-      }
+      };
     } catch (error) {
       if (error instanceof Error) {
-        if(error.message === NOT_UNIQ_MSG) {
+        if (error.message === NOT_UNIQ_MSG) {
           debug(NOT_UNIQ_MSG);
           ctx.status = 409;
           ctx.body = {
