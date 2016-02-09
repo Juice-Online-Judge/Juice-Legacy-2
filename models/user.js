@@ -26,18 +26,18 @@ export default db.define('user', {
   paranoid: true,
   instanceMethods: {
     setPassword: function(password) {
-      let this_ = this;
+      let self = this;
       return when.promise(async (resolve) => {
         let salt = await nodefn.call(bcrypt.genSalt, 10);
         let encrypted = await nodefn.call(bcrypt.hash, password, salt);
-        this_.password = encrypted;
-        resolve();
+        self.password = encrypted;
+        resolve(self);
       });
     },
     verifyPassword: function(password) {
-      let this_ = this;
+      let self = this;
       return when.promise(async (resolve) => {
-        let res = await nodefn.call(bcrypt.compare, password, this_.password);
+        let res = await nodefn.call(bcrypt.compare, password, self.password);
         resolve(res);
       });
     }
