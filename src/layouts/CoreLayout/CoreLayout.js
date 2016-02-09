@@ -18,7 +18,7 @@ import AppBar from 'components/AppBar';
 // define it with a plain javascript function...
 @Theme(theme)
 @Radium
-class CoreLayout extends React.Component {
+export class CoreLayout extends React.Component {
   static propTypes = {
     children: PropTypes.element
   };
