@@ -49,10 +49,6 @@ const config = {
     colors : true
   },
   compiler_vendor : [
-    'fetch-plus',
-    'fetch-plus-csrf',
-    'fetch-plus-json',
-    'isomorphic-fetch',
     'history',
     'immutable',
     'js-cookie',
@@ -65,6 +61,8 @@ const config = {
     'redux-simple-router',
     'react-tap-event-plugin',
     'radium',
+    'rest',
+    'validate.js',
     'when'
   ],
 
