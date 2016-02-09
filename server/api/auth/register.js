@@ -1,6 +1,7 @@
 import _debug from 'debug';
 import validate from 'validate.js';
 import when from 'when';
+import nodefn from 'when/node';
 import User from '../../../models/user';
 import router from './router';
 import rule from '../../../src/validation/register';
@@ -27,6 +28,10 @@ router.post('/register', async (ctx, next) => {
     try {
       await when.all([checkUnique(body.username), validate.async(body, rule)]);
       debug('Pass validation');
+      let user = User.build(body);
+      await user.setPassword(body.password);
+      await user.save();
+      await nodefn.call(ctx.req.login, user);
       ctx.status = 200;
       ctx.body = {
         success: true
