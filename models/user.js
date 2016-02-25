@@ -9,26 +9,26 @@ export default db.define('user', {
     type: Sequelize.STRING(24),
     allowNull: false,
     unique: true,
-    comment: `Username`
+    comment: 'Username'
   },
 
   password: {
     type: Sequelize.STRING(100),
     allowNull: false,
-    comment: `User's password hash`
+    comment: "User's password hash"
   },
 
   nickname: {
     type: Sequelize.STRING(16),
     unique: true,
     allowNull: false,
-    comment: `User's nickname`
+    comment: "User's nickname"
   },
 
   email: {
     type: Sequelize.STRING(48),
     unique: true,
-    comment: `User's email`
+    comment: "User's email"
   }
 }, {
   paranoid: true,
