@@ -15,6 +15,7 @@
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
+    "migration:create": "better-npm-run migration:create",
     "dev": "better-npm-run dev",
     "dev:nw": "npm run dev -- --nw",
     "dev:no-debug": "npm run dev -- --no_debug",
@@ -23,6 +24,12 @@
     "deploy": "better-npm-run deploy"
   },
   "betterScripts": {
+    "migration:create": {
+      "command": "node -r dotenv/config -r babel-register node_modules/.bin/sequelize --harmony migration:create",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
     "dev": {
       "command": "nodemon -r dotenv/config bin/server",
       "env": {
@@ -142,6 +149,7 @@
     "redux-devtools": "^3.1.0",
     "redux-devtools-log-monitor": "^1.0.1",
     "sass-loader": "^3.0.0",
+    "sequelize-cli": "^2.3.1",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
