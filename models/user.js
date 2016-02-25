@@ -6,19 +6,17 @@ import db from './db';
 
 export default db.define('user', {
   username: {
-    type: Sequelize.STRING(32),
+    type: Sequelize.STRING(16),
     allowNull: false,
     unique: true,
     comment: 'Username'
   },
   email: {
-    type: Sequelize.STRING(32),
-    allowNull: false,
-    unique: true,
+    type: Sequelize.STRING(48),
     comment: 'User\'s email'
   },
   password: {
-    type: Sequelize.STRING(128),
+    type: Sequelize.STRING(100),
     allowNull: false,
     comment: 'User\'s password hash'
   }
