@@ -13,11 +13,11 @@ import SigninView from 'views/SigninView/SigninView';
 import SignupView from 'views/SignupView/SignupView';
 
 export default (
-  <Route path='/' component={CoreLayout}>
-    <IndexRoute component={HomeView} />
-    <Route path='signin' component={SigninView} />
-    <Route path='signup' component={SignupView} />
-    <Route path='/404' component={NotFoundView} />
+  <Route path='/' component={ CoreLayout }>
+    <IndexRoute component={ HomeView } />
+    <Route path='signin' component={ SigninView } />
+    <Route path='signup' component={ SignupView } />
+    <Route path='/404' component={ NotFoundView } />
     <Redirect from='*' to='/404' />
   </Route>
 );

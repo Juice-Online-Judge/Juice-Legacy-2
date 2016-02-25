@@ -125,38 +125,38 @@ export class SignupView extends React.Component {
   render() {
     let { errorMessage } = this.state;
     return (
-      <div style={styles.container}>
-        <div style={[styles.margin, styles.flexContainer]}>
-          <Paper zDepth={3} style={styles.paper}>
+      <div style={ styles.container }>
+        <div style={ [styles.margin, styles.flexContainer] }>
+          <Paper zDepth={ 3 } style={ styles.paper }>
             <Card>
-              <CardTitle style={styles.flexContainer} title='Signup' />
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardTitle style={ styles.flexContainer } title='Signup' />
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   onChange={ this.setUsername }
                   errorText={ errorMessage.username }
                   floatingLabelText='Username' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   onChange={ this.setEmail }
                   errorText={ errorMessage.email }
                   floatingLabelText='Email' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   type='password'
                   onChange={ this.setPassword }
                   errorText={ errorMessage.password }
                   floatingLabelText='Password' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   type='password'
                   onChange={ this.setPasswordConfirm }
                   errorText={ errorMessage.passwordConfirm }
                   floatingLabelText='PasswordConfirm' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
+              <CardActions style={ styles.flexContainer }>
                 <FlatButton label='Signup' primary onClick={ this.signup } />
               </CardActions>
             </Card>

@@ -11,8 +11,8 @@ export default class Root extends React.Component {
 
   get content() {
     return (
-      <Router history={this.props.history}>
-        {this.props.routes}
+      <Router history={ this.props.history }>
+        { this.props.routes }
       </Router>
     );
   }
@@ -34,10 +34,10 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <Provider store={this.props.store}>
-        <div style={{ height: '100%' }}>
-          {this.content}
-          {this.devTools}
+      <Provider store={ this.props.store }>
+        <div style={ { height: '100%' } }>
+          { this.content }
+          { this.devTools }
         </div>
       </Provider>
     );

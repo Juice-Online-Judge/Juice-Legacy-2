@@ -28,7 +28,7 @@ export class CoreLayout extends React.Component {
       <div className='page-container' style={ styles.container }>
         <div className='view-container' style={ styles.container }>
           <AppBar />
-          {this.props.children}
+          { this.props.children }
         </div>
       </div>
     );

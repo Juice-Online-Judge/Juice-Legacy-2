@@ -21,7 +21,7 @@ export default function createDevToolsWindow(store) {
     win.document.body.style.margin = '0';
 
     ReactDOM.render(
-      <Provider store={store}>
+      <Provider store={ store }>
         <DevTools />
       </Provider>
       , win.document.getElementById('react-devtools-root')

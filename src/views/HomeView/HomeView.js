@@ -17,7 +17,7 @@ export class HomeView extends React.Component {
       if (loginState.get('state')) {
         return (
           <h1>
-            Welcome user: {loginState.getIn(['user', 'username'])}
+            Welcome user: { loginState.getIn(['user', 'username']) }
           </h1>
         );
       } else {

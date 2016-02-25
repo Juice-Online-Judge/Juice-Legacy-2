@@ -67,23 +67,23 @@ export class SigninView extends React.Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        <div style={[styles.margin, styles.flexContainer]}>
-          <Paper zDepth={3} style={styles.paper}>
+      <div style={ styles.container }>
+        <div style={ [styles.margin, styles.flexContainer] }>
+          <Paper zDepth={ 3 } style={ styles.paper }>
             <Card>
-              <CardTitle style={styles.flexContainer} title='Juice' />
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardTitle style={ styles.flexContainer } title='Juice' />
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   onChange={ this.setUsername }
                   floatingLabelText='Username' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
-                <TextField style={styles.action}
+              <CardActions style={ styles.flexContainer }>
+                <TextField style={ styles.action }
                   type='password'
                   onChange={ this.setPassword }
                   floatingLabelText='Password' />
               </CardActions>
-              <CardActions style={styles.flexContainer}>
+              <CardActions style={ styles.flexContainer }>
                 <FlatButton label='Signin' primary onClick={ this.login } />
               </CardActions>
             </Card>

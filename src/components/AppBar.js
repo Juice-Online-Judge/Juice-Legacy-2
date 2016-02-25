@@ -39,8 +39,8 @@ export class AppBar extends React.Component {
               </FontIcon>
             </IconButton>
           }
-          targetOrigin={{horizontal: 'right', vertical: 'top'}}
-          anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
+          targetOrigin={ {horizontal: 'right', vertical: 'top'} }
+          anchorOrigin={ {horizontal: 'right', vertical: 'top'} } >
           <MenuItem primaryText='Logout' onTouchTap={ this.logout } />
         </IconMenu>
       );
@@ -48,10 +48,10 @@ export class AppBar extends React.Component {
       return (
         <div>
           <Link to='/signup'>
-            <FlatButton labelStyle={{ color: 'white' }} label='Signup' />
+            <FlatButton labelStyle={ { color: 'white' } } label='Signup' />
           </Link>
           <Link to='/signin'>
-            <FlatButton labelStyle={{ color: 'white' }} label='Signin' />
+            <FlatButton labelStyle={ { color: 'white' } } label='Signin' />
           </Link>
         </div>
       );
