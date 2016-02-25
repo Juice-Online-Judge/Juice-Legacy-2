@@ -1,5 +1,7 @@
 Juice 2
-=========
+=======
+
+[![Build Status](https://travis-ci.org/Sunday-Without-God/Juice.svg?branch=master)](https://travis-ci.org/Sunday-Without-God/Juice)
 
 An interactive teaching & judging system for coding.
 Juice: Join Us In Coding Education
