@@ -20,5 +20,3 @@ This project is build from [davezuko/react-redux-starter-kit](https://github.com
 - Redux
 - Material-UI
 - Sequelize
-
-
