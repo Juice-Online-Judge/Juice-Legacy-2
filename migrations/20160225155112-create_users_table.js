@@ -8,28 +8,35 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true
         },
+
         username: {
           type: Sequelize.STRING(24),
           unique: true,
           allowNull: false
         },
+
         password: {
           type: Sequelize.STRING(100),
           allowNull: false
         },
+
         nickname: {
           type: Sequelize.STRING(16),
           unique: true,
           allowNull: false
         },
+
         email: {
-          type: Sequelize.STRING(48)
+          type: Sequelize.STRING(48),
+          unique: true
         },
+
         createdAt: {
           type: Sequelize.DATE,
           allowNull: false,
           field: 'created_at'
         },
+
         updatedAt: {
           type: Sequelize.DATE,
           allowNull: false,
