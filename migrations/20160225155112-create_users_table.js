@@ -1,5 +1,5 @@
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: function(queryInterface, Sequelize) {
     return queryInterface.createTable(
       'users',
       {
@@ -32,13 +32,13 @@ module.exports = {
         }
       },
       {
-        charset: "utf8mb4",
-        collate: "utf8mb4_unicode_ci"
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci'
       }
     );
   },
 
-  down: function (queryInterface, Sequelize) {
+  down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('users');
   }
 };
