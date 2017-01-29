@@ -1,6 +1,8 @@
 Juice 2
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Juice-Online-Judge/Juice-Legacy-2.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/Sunday-Without-God/Juice.svg?branch=master)](https://travis-ci.org/Sunday-Without-God/Juice)
 
 An interactive teaching & judging system for coding.
